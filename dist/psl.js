@@ -258,9 +258,9 @@ exports.get = function (domain_list) {
   for (var i=0;i<domain_list.length;i++){
   var domain = domain_list[i];
   if (!domain) {
-    results_array.push(null);
+    results_array.push([null]);
   }
-  results_array.push(exports.parse(domain).domain || null);}
+  results_array.push([exports.parse(domain).domain || null)];}
   return results_array;
 };
 
