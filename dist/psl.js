@@ -1,6 +1,6 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.psl = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 var suffix = require('./suffix');
-module.exports = suffix;
+module.exports = suffix
 },{}],2:[function(require,module,exports){
 /*eslint no-var:0, prefer-arrow-callback: 0, object-shorthand: 0 */
 'use strict';
@@ -177,7 +177,7 @@ exports.parse = function (input) {
     subdomain: null,
     listed: false
   };
-
+  console.log(parsed);
   var domainParts = domain.split('.');
 
   // Non-Internet TLD
@@ -217,6 +217,7 @@ exports.parse = function (input) {
 
   // At this point we know the public suffix is listed.
   parsed.listed = true;
+  console.log(parsed);
 
   var tldParts = rule.suffix.split('.');
   var privateParts = domainParts.slice(0, domainParts.length - tldParts.length);
@@ -246,7 +247,7 @@ exports.parse = function (input) {
   if (privateParts.length) {
     parsed.subdomain = privateParts.join('.');
   }
-
+  // console.log(handlePunycode());
   return handlePunycode();
 };
 
@@ -254,15 +255,12 @@ exports.parse = function (input) {
 //
 // Get domain.
 //
-exports.get = function (domain_list) {
-  var results_array = [];
-  for (var i=0;i<domain_list.length;i++){
-  var domain = domain_list[i];
+exports.get = function (domain) {
+
   if (!domain) {
-    results_array.push([null]);
+    return null;
   }
-  results_array.push([exports.parse(domain).domain || null)];}
-  return results_array;
+  return exports.parse(domain).domain || null;
 };
 
 
