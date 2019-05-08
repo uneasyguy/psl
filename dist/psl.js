@@ -253,15 +253,12 @@ exports.parse = function (input) {
 //
 // Get domain.
 //
-exports.get = function (domain_list) {
-  var results_array = [];
-  for (var i=0;i<domain_list.length;i++){
-  var domain = domain_list[i];
+exports.get = function (domain) {
+
   if (!domain) {
-    results_array.push([null]);
+    return null;
   }
-  results_array.push([exports.parse(domain).domain] || [null]);}
-  return results_array;
+  return exports.parse(domain).domain || null;
 };
 
 
